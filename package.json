@@ -2,7 +2,9 @@
   "name": "ts-result",
   "version": "0.0.1",
   "description": "Result Monad for TypeScript",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "README.md", "LICENSE"],
   "scripts": {
     "test": "jest",
     "build": "tsc"
