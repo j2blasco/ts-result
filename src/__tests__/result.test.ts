@@ -4,10 +4,12 @@ import {
   unwrapSuccessResult,
   Result,
   ErrorWithCode,
+  resultSuccessVoid,
 } from "../result";
+import { assertType, expectToCompile } from "../utils/test/assert-type";
 
 function createResult<TSuccess, TError>(): Result<TSuccess, TError> {
-  return resultSuccess("test") as object as Result<TSuccess, TError>;
+  return resultSuccessVoid() as object as Result<TSuccess, TError>;
 }
 
 describe("Result Monad", () => {
@@ -46,18 +48,15 @@ describe("Result Monad", () => {
     const resultString = createResult<string, ErrorWithCode<"test">>();
 
     const resultInt = resultString.andThen((value) => {
-      type ValueType = typeof value;
       type Expected = string;
-      const assertType: ValueType extends Expected ? true : false = true;
-      expect(assertType).toBe(true);
+      assertType<typeof value, Expected>(true);
       return resultSuccess(42);
     });
 
-    type Test = typeof resultInt;
     type Expected = Result<number, ErrorWithCode<"test">>;
+    assertType<typeof resultInt, Expected>(true);
 
-    const assertType: Test extends Expected ? true : false = true;
-    expect(assertType).toBe(true);
+    expectToCompile();
   });
 
   test("Result Monad success should be chainable with inferred types - obj -> obj", () => {
@@ -67,17 +66,14 @@ describe("Result Monad", () => {
     >();
 
     const resultInt = resultString.andThen((value) => {
-      type ValueType = typeof value;
       type Expected = { test: string };
-      const assertType: ValueType extends Expected ? true : false = true;
-      expect(assertType).toBe(true);
+      assertType<typeof value, Expected>(true);
       return resultSuccess({ test2: "test" });
     });
 
-    type Test = typeof resultInt;
     type Expected = Result<{ test2: string }, ErrorWithCode<"test">>;
+    assertType<typeof resultInt, Expected>(true);
 
-    const assertType: Test extends Expected ? true : false = true;
-    expect(assertType).toBe(true);
+    expectToCompile();
   });
 });
