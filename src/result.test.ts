@@ -5,8 +5,8 @@ import {
   Result,
   ErrorWithCode,
   resultSuccessVoid,
-} from "../result";
-import { assertType, expectToCompile } from "../utils/test/assert-type";
+} from "./result";
+import { assertType, expectToCompile } from "./utils/test/assert-type";
 
 function createResult<TSuccess, TError>(): Result<TSuccess, TError> {
   return resultSuccessVoid() as object as Result<TSuccess, TError>;
