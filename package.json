@@ -1,6 +1,6 @@
 {
   "name": "@j2blasco/ts-result",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Result Monad for TypeScript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
