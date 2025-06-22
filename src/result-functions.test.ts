@@ -1,4 +1,4 @@
-// import { pipe } from "@j2blasco/pipe"
+import { pipe } from "@j2blasco/pipe";
 import { resultSuccess } from "./result";
 
 function doSomething() {
