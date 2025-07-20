@@ -1,44 +1,51 @@
 {
   "name": "@j2blasco/ts-result",
-  "version": "0.1.1",
-  "description": "Result Monad for TypeScript",  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "version": "0.1.2",
+  "description": "Result Monad for TypeScript",
+  "author": "j2blasco",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "result",
+    "monad",
+    "error-handling"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/j2blasco/ts-crud"
   },
-  "types": "./types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./types/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
-  },  "files": [
-    "dist/cjs",
-    "dist/esm", 
-    "types",
-    "src",
+  },
+  "files": [
+    "dist",
     "README.md",
     "LICENSE"
-  ],  "scripts": {
-    "test": "jest",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "clean": "rimraf dist types"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsup",
+    "clean": "shx rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "type": "module",  "devDependencies": {
+  "type": "module",
+  "devDependencies": {
     "@j2blasco/ts-pipe": "^0.0.4",
     "@types/jest": "^29.5.14",
     "jest": "^29.7.0",
-    "rimraf": "^5.0.0",
-    "ts-jest": "^29.3.2"
-  },
-  "publishConfig": {
-    "access": "public"
+    "shx": "^0.4.0",
+    "ts-jest": "^29.3.2",
+    "tsup": "^8.5.0",
+    "typescript": "~5.7.2"
   }
 }
