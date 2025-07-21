@@ -73,9 +73,8 @@ export class resultError {
     );
   }
   public static fromError<
-    TSuccess1,
     TError1 extends ErrorWithCode<any, object>,
-  >(error: TError1): Result<TSuccess1, TError1> {
+  >(error: TError1): Result<never, TError1> {
     return new ResultErrorImp<TError1>(error);
   }
 }

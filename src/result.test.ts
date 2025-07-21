@@ -5,6 +5,8 @@ import {
   Result,
   ErrorWithCode,
   resultSuccessVoid,
+  SuccessVoid,
+  ErrorUnknown,
 } from "./result";
 import { assertType, expectToCompile } from "./utils/test/assert-type";
 
@@ -75,5 +77,37 @@ describe("Result Monad", () => {
     assertType<typeof resultInt, Expected>(true);
 
     expectToCompile();
+  });
+
+  test("Type is properly infered in resultError.fromError (simple case)", () => {
+    const result = createResult<
+      SuccessVoid,
+      ErrorWithCode<"error-code"> | ErrorUnknown
+    >();
+    const catchedResult = result.catchError((e) => {
+      if (e.code === "error-code") {
+        return resultSuccessVoid();
+      }
+      return resultError.fromError(e);
+    });
+    type Expected = Result<never, ErrorUnknown>;
+    assertType<typeof catchedResult, Expected>(true);
+  });
+
+  test("Type is properly infered in resultError.fromError (complex case)", () => {
+    const result = createResult<
+      SuccessVoid,
+      | ErrorWithCode<"error-code-1">
+      | ErrorWithCode<"error-code-2">
+      | ErrorUnknown
+    >();
+    const catchedResult = result.catchError((e) => {
+      if (e.code === "error-code-1") {
+        return resultSuccess(5);
+      }
+      return resultError.fromError(e);
+    });
+    type Expected = Result<number, ErrorUnknown | ErrorWithCode<'error-code-2'>>;
+    assertType<typeof catchedResult, Expected>(true);
   });
 });
