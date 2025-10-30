@@ -1,7 +1,7 @@
 // import { asyncPipe, pipe } from "@j2blasco/ts-pipe";
-import { andThen, andThenAsync, catchError, catchErrorAsync } from "./result-functions";
-import { resultSuccess, resultError, ErrorUnknown, Result } from "./result";
-import { assertType } from "./utils/test/assert-type";
+import { andThen, andThenAsync, catchError, catchErrorAsync } from "./result-functions.js";
+import { resultSuccess, resultError, ErrorUnknown, Result } from "./result.js";
+import { assertType } from "./utils/test/assert-type.js";
 import { asyncPipe, pipe } from "@j2blasco/ts-pipe";
 
 function doSomething(): Result<string, ErrorUnknown> {

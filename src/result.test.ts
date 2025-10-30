@@ -7,8 +7,8 @@ import {
   resultSuccessVoid,
   SuccessVoid,
   ErrorUnknown,
-} from "./result";
-import { assertType, expectToCompile } from "./utils/test/assert-type";
+} from "./result.js";
+import { assertType, expectToCompile } from "./utils/test/assert-type.js";
 
 function createResult<TSuccess, TError>(): Result<TSuccess, TError> {
   return resultSuccessVoid() as object as Result<TSuccess, TError>;

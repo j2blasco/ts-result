@@ -1,4 +1,4 @@
-import { ErrorType, Result, SuccessType } from "./result";
+import { ErrorType, Result, SuccessType } from "./result.js";
 
 export function andThen<TSuccess, TError, TResult extends Result<any, any>>(
   callback: (value: TSuccess) => TResult
