@@ -1,12 +1,14 @@
 import { resultSuccess, resultError, Result } from '@j2blasco/ts-result';
 
+console.log('=== CommonJS Test ===\n');
+
 // Test basic import
 const success = resultSuccess(42);
-console.log('Success result created:', success);
+console.log('[CJS] Success result created:', success);
 
 // Test error
 const error = resultError.unknown('Something went wrong');
-console.log('Error result created:', error);
+console.log('[CJS] Error result created:', error);
 
 // Test with custom type
 interface User {
@@ -15,15 +17,15 @@ interface User {
 }
 
 const userResult: Result<User, never> = resultSuccess({
-  name: 'John',
-  age: 30
+  name: 'Jane (CJS)',
+  age: 25
 });
 
-console.log('User result:', userResult);
+console.log('[CJS] User result:', userResult);
 
 // Test andThen
 const doubled = userResult.andThen((user: User) => 
   resultSuccess({ ...user, age: user.age * 2 })
 );
 
-console.log('Doubled age:', doubled);
+console.log('[CJS] Doubled age:', doubled);
