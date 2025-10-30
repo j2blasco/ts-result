@@ -8,5 +8,5 @@ export default defineConfig({
   clean: true,
   splitting: false,
   sourcemap: true,
-  dts: true,
+  dts: false, // We'll generate declarations with tsc instead
 });

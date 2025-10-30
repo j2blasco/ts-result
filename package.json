@@ -1,6 +1,6 @@
 {
   "name": "@j2blasco/ts-result",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Result Monad for TypeScript",
   "author": "j2blasco",
   "license": "MIT",
@@ -36,7 +36,9 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "npm run clean && tsup",
+    "build": "npm run clean && npm run build:js && npm run build:dts",
+    "build:js": "tsup",
+    "build:dts": "tsc -p tsconfig.build.json && node scripts/build-maps.cjs",
     "clean": "shx rm -rf dist",
     "prepublishOnly": "npm run build",
     "test": "jest"

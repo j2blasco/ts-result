@@ -4,6 +4,8 @@
     "module": "ES2020",
     "moduleResolution": "node",
     "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
