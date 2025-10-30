@@ -1,6 +1,6 @@
 {
   "name": "@j2blasco/ts-result",
-  "version": "0.1.6",
+  "version": "0.1.9",
   "description": "Result Monad for TypeScript",
   "author": "j2blasco",
   "license": "MIT",
@@ -19,13 +19,19 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "files": [
     "dist",
+    "src",
     "README.md",
     "LICENSE"
   ],
